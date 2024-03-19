@@ -13,9 +13,10 @@ import android.widget.Button;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity"; // Tag pour les logs
-    private Button question; //bouton qui contient les questions et permet de passer a la suivante
-    private Button adding; //bouton d'ajout des questions
+    private static final String TAG = "MainActivity"; // Tag used for logs
+    private Button question; // button that contains the questions and allows to go to the next one
+    private Button adding; // button to add questions
+
 
     private int i;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         adding = findViewById(R.id.button3);
 
 
-        // Ajouter un écouteur de clic au bouton "question" passe a la question suivante
+        // Add a click listener to the "question" button goes to the next question
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 question.setText(randomQuestionText);
             }
         });
-        // Ajouter un écouteur de clic au bouton "adding" qui ouvre la vue d'ajout des questions
+        // Add a click listener to the "adding" button that opens the question adding view
         adding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(adding);
             }
         });
-        //récupération des question depuis le fichier text, les questions peuvent etre modifier depuis ce meme fichier text stocker en local sans passer par le code.
+		// Retrieving questions from the text file, questions can be modified from this same text file stored locally without going through the code.
         if (questionList.isEmpty()) {
             try {
                 importQuestionsFromFile();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            if (questionList.isEmpty()) {// cas ou les questions ne sont pas enregistrer ou que le fichier a été supprimer
+            if (questionList.isEmpty()) {// Case where the questions are not saved or the file has been deleted
                 Question question1 = new Question("Qui parmi nous a déjà essayé une boisson alcoolisée exotique?");
                 Question question3 = new Question("Qui parmi nous a déjà participé à un jeu de société coquin?");
                 Question question4 = new Question("Qui parmi nous a déjà fait un strip-tease ?");
@@ -116,6 +117,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, "L'activité est de retour d'une pause");
+        Log.i(TAG, "Activity is back from a pause");
     }
 }
