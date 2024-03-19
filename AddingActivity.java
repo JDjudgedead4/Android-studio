@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class AddingActivity extends AppCompatActivity {
 
-    private EditText editText; //champ de texte input des question
-    private Button retour; //bouton de précédente
-    private Button enregistrer; //boutton qui enregistre les questions
+    private EditText editText; // Text field for question input
+    private Button retour; // Button for going back
+    private Button enregistrer; // Button to save questions
 
 
     @Override
@@ -21,11 +21,11 @@ public class AddingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_adding);
 
 
-        //déclaration des composants
+         // Initialize components
         editText = findViewById(R.id.input_question);
         retour = findViewById(R.id.retour);
         enregistrer = findViewById(R.id.enregistrer);
-        //action de retour
+        // Back button action
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,7 +33,7 @@ public class AddingActivity extends AppCompatActivity {
 
             }
         });
-        //action d'enregistrement des questions
+         // Save question button action
         enregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
