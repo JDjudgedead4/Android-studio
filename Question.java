@@ -12,30 +12,30 @@ import java.util.List;
 import java.util.Random;
 
 public class Question {
-    // id des question avec auto-incrémentation
+	// Question ID with auto-increment
     private static int nextId = 1;
-    //dossier d'écriture du fichier dans notre cas le dossier téléchargement.
+	// Directory to write the file, in this case the Downloads folder
     static File ext = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    //création du fichier
+	// The question file
     static File file = new File(ext + File.separator + "question.txt");
     private int id;
     private String text;
 
-    // Liste pour stocker toutes les instances de Question
+	// List to store all Question instances
     public static List<Question> questionList = new ArrayList<>();
 
     public Question(String text) {
         this.id = nextId++;
         this.text = text;
 
-        // Ajouter l'instance actuelle à la liste
+	  // Add the current instance to the list
         questionList.add(this);
     }
-    //fonction qui retourn l'id d'une question
+	// Function that returns the ID of a question
     public int getId() {
         return id;
     }
-    //fonction qui donne l'id max de la liste de questions
+	// Function that gives the maximum ID of the question list
     public static int getMaxId() {
         int maxId = 0;
         for (Question question : questionList) {
@@ -45,7 +45,7 @@ public class Question {
         }
         return maxId;
     }
-    //fonction qui retourne la question en texte de l'objet question
+	// Function that returns the question text of the question object
     public String getText() {
         return text;
     }
@@ -59,7 +59,7 @@ public class Question {
         return getTextById(randomId);
     }
 
-    // Méthode pour obtenir le texte à partir de l'ID
+	// Method to get the text from the ID
     public static String getTextById(int id) {
         for (Question question : questionList) {
             if (question.getId() == id) {
@@ -68,11 +68,11 @@ public class Question {
         }
         return "Question non trouvée";
     }
-    //méthode qui enregistre les questions dans le fichier local question.txt
+	// Method that saves questions to the local file question.txt
     public static void saveQuestionsToFile() throws IOException {// méthode qui enregistre les question dans le fichier texte
 
 
-        // Création du fichier s'il n'existe pas
+	  // Create the file if it doesn't exist
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -84,7 +84,7 @@ public class Question {
             writer.close();
         }
     }
-    //méthode qui importe les question a partir du fichier local question.txt
+	// Method that imports questions from the local file question.txt
     public static void importQuestionsFromFile() throws IOException { // méthode qui importe dans l'application les question dans le fichier texte
         if (!file.exists()) {
             file.createNewFile();
@@ -101,7 +101,7 @@ public class Question {
 
     }
 
-    // mets a jour la liste de question
+	// Updates the question list
     private static void updateQuestion(int id, String text) {
         for (Question question : questionList) {
             if (question.getId() == id) {
