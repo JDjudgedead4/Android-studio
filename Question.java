@@ -1,7 +1,6 @@
 package com.example.grasteau;
 
 import android.os.Environment;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,10 +12,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Question {
+    // id des question avec auto-incrémentation
     private static int nextId = 1;
+    //dossier d'écriture du fichier dans notre cas le dossier téléchargement.
     static File ext = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    //création du fichier
     static File file = new File(ext + File.separator + "question.txt");
-
     private int id;
     private String text;
 
@@ -30,10 +31,11 @@ public class Question {
         // Ajouter l'instance actuelle à la liste
         questionList.add(this);
     }
-
+    //fonction qui retourn l'id d'une question
     public int getId() {
         return id;
     }
+    //fonction qui donne l'id max de la liste de questions
     public static int getMaxId() {
         int maxId = 0;
         for (Question question : questionList) {
@@ -43,6 +45,7 @@ public class Question {
         }
         return maxId;
     }
+    //fonction qui retourne la question en texte de l'objet question
     public String getText() {
         return text;
     }
@@ -65,10 +68,11 @@ public class Question {
         }
         return "Question non trouvée";
     }
-    public static void saveQuestionsToFile() throws IOException {
+    //méthode qui enregistre les questions dans le fichier local question.txt
+    public static void saveQuestionsToFile() throws IOException {// méthode qui enregistre les question dans le fichier texte
 
 
-        // Create the file if it doesn't exist
+        // Création du fichier s'il n'existe pas
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -80,7 +84,8 @@ public class Question {
             writer.close();
         }
     }
-    public static void importQuestionsFromFile() throws IOException {
+    //méthode qui importe les question a partir du fichier local question.txt
+    public static void importQuestionsFromFile() throws IOException { // méthode qui importe dans l'application les question dans le fichier texte
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -96,7 +101,7 @@ public class Question {
 
     }
 
-
+    // mets a jour la liste de question
     private static void updateQuestion(int id, String text) {
         for (Question question : questionList) {
             if (question.getId() == id) {
